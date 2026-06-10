@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aditya Jadhav | Personal Brand & Portfolio</title>
+    <meta name="description" content="Portfolio of Aditya Jadhav - Information Technology student, AI builder, and developer. Specialized in ML, Android apps, and interactive web tools.">
+    <!-- FontAwesome CDN for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- BACKGROUND GRID LINES OVERLAY -->
+    <div class="grid-lines-overlay">
+        <div></div><div></div><div></div><div></div><div></div><div></div>
+    </div>
+
+    <!-- HOME VIEW -->
+    <div id="home-view">
+
+    <!-- STICKY GLASSMORPHISM HEADER -->
+    <header id="site-header">
+        <div class="container nav-container">
+            <a href="#hero" class="logo" id="nav-logo">
+                <span>&lt;</span>Aditya Jadhav<span>/&gt;</span>
+            </a>
+            
+            <button class="mobile-toggle" id="menu-toggle" aria-label="Toggle Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            
+            <nav id="navbar-nav">
+                <ul class="nav-links" id="nav-menu">
+                    <li><a href="#work" class="active" id="link-work">Work</a></li>
+                    <li><a href="#experiments" id="link-experiments">Experiments</a></li>
+                    <li><a href="#about" id="link-about">About</a></li>
+                    <li><a href="#contact" id="link-contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- FLOATING CHAT TRIGGER BUTTON -->
+    <button class="chat-fab" id="chat-fab-trigger">
+        <i class="fa-regular fa-comment-dots"></i> Chat with Aditya-AI
+    </button>
+
+    <!-- SIDEBAR BACKDROP OVERLAY -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- CHAT ASSISTANT BOTTOM CONTAINER (Galactic Cloud Mode) -->
+    <aside class="chat-sidebar" id="chat-sidebar">
+        <!-- Three.js WebGL Canvas for Cosmic Background -->
+        <canvas class="chat-cosmic-canvas" id="chat-cosmic-canvas"></canvas>
+        
+        <!-- UI Glass Overlay Content -->
+        <div class="chat-glass-content">
+            <!-- Header -->
+            <div class="sidebar-header">
+                <div class="header-left">
+                    <span class="header-arrow">/&gt;</span>
+                    <h3>Aditya-AI Assistant</h3>
+                    <span class="online-indicator"><span class="online-dot"></span> Online</span>
+                </div>
+                <div class="window-controls">
+                    <button class="win-control-btn" aria-label="Minimize"><i class="fa-solid fa-minus"></i></button>
+                    <button class="win-control-btn" aria-label="Maximize"><i class="fa-regular fa-square"></i></button>
+                    <button class="win-control-btn" id="chat-sidebar-close" aria-label="Close Chat"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+            </div>
+            
+            <!-- Unified Chat Body -->
+            <div class="chat-body-container">
+                <div class="chat-history" id="chat-history-logs">
+                    <!-- Dialogue bubbles & chips injected dynamically -->
+                </div>
+                
+                <!-- Bottom Custom Input Bar -->
+                <div class="chat-input-wrapper">
+                    <div class="chat-text-input-bar">
+                        <input type="text" id="chat-custom-text-input" placeholder="Ask me anything..." autocomplete="off">
+                        <button id="btn-chat-send" aria-label="Send Message">
+                            <i class="fa-regular fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Chat Sub Footer Tip Bar -->
+                <div class="chat-sub-footer">
+                    <span class="sub-footer-left">TIP: Type 'help' to see all available commands</span>
+                    <span class="sub-footer-right">Secure &bull; Private &bull; Always Learning</span>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- HERO SECTION with Interactive Terminal Console -->
+    <section id="hero">
+        <div class="container hero-wrapper">
+            <div class="hero-info">
+                <h1 class="hero-title">
+                    I build <span class="gradient-text">AI-powered software</span>, Android applications, and experimental tools that solve real-world problems.
+                </h1>
+                <div class="hero-subtitle">
+                    B.Tech IT Student &bull; Building AI Products &bull; Exploring New Ideas &bull; Shipping Solutions
+                </div>
+                <div class="hero-actions">
+                    <a href="#work" class="btn btn-primary" id="btn-hero-projects">
+                        <i class="fa-solid fa-code"></i> Explore My Work
+                    </a>
+                    <a href="#about" class="btn btn-secondary" id="btn-hero-about">
+                        <i class="fa-regular fa-user"></i> My Story
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Interactive Console Window -->
+            <div class="console-wrapper">
+                <div class="console-window" id="vibe-console">
+                    <div class="console-header">
+                        <div class="console-dots">
+                            <div class="console-dot red"></div>
+                            <div class="console-dot yellow"></div>
+                            <div class="console-dot green"></div>
+                        </div>
+                        <div class="console-title">visitor@aditya: ~</div>
+                        <div class="console-status"><i class="fa-solid fa-circle-nodes"></i> Interactive</div>
+                    </div>
+                    <div class="console-body" id="console-logs">
+                        <!-- Invisible input field for capturing typing -->
+                        <input type="text" id="terminal-hidden-input" autocomplete="off" spellcheck="false" aria-label="Terminal Input">
+                        <div class="console-line">
+                            <div class="console-output info">
+                                Welcome to my interactive console. Click here and start typing, or run quick commands below.
+                                Type 'help' to see all options.
+                            </div>
+                        </div>
+                        <div class="console-line" id="console-live-prompt">
+                            <div class="console-prompt">visitor@aditya:~$ <span class="console-input" id="terminal-input-display"></span><span class="cursor-blink"></span></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Quick-Run command tags directly below console -->
+                <div class="terminal-quick-chips">
+                    <span class="chips-label">Run:</span>
+                    <button class="terminal-chip" data-cmd="help">help</button>
+                    <button class="terminal-chip" data-cmd="work">work</button>
+                    <button class="terminal-chip" data-cmd="about">about</button>
+                    <button class="terminal-chip" data-cmd="experiments">experiments</button>
+                    <button class="terminal-chip" data-cmd="skills">skills</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CASE-STUDY WORK SECTION -->
+    <section id="work" class="reveal">
+        <div class="container">
+            <h2 class="section-title">Selected Work</h2>
+            
+            <div class="case-studies-list">
+                
+                <!-- Case Study: Aegis AI -->
+                <div class="case-study" id="cs-aegis">
+                    <div class="case-study-header">
+                        <span class="case-study-num">01 /</span>
+                        <h3 class="case-study-title">Aegis AI</h3>
+                        <span class="case-study-category">Deep Learning / Synthetic Media Detection</span>
+                    </div>
+                    <div class="case-study-grid">
+                        <div class="case-study-narrative">
+                            <div class="case-study-block">
+                                <h4>The Problem</h4>
+                                <p>The exponential growth of sophisticated generative AI and diffusion pipelines (like Midjourney and Latent Diffusion) has made synthetic media virtually indistinguishable from authentic photos, presenting severe security, identity, and misinformation risks.</p>
+                            </div>
+                            <div class="case-study-block">
+                                <h4>The Solution</h4>
+                                <p>A secure production-grade deepfake detection platform featuring a Flask full-stack runtime, SQLite database persistence, and a Hugging Face Vision Transformer (ViT) inference engine. Incorporates a custom local training workflow utilizing an EfficientNet-B3 network with Mixup regularization.</p>
+                            </div>
+                            <div class="case-study-block">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Pre-trained Vision Transformer model orchestration using Hugging Face AutoImageProcessor and AutoModel pipelines.</li>
+                                    <li>Local dataset preparation of 30,000 synthetic faces with custom Mixup regularization to smooth neural decision boundaries during training.</li>
+                                    <li>Automated MTCNN face alignment that expands bounding coordinates by 15% to capture jawline and hairline seams where diffusion artifacts typically manifest.</li>
+                                    <li>Advanced account security mechanisms including an in-memory IP jail rate-limiter, Google OAuth SSO integration, and 7-day username change restrictions.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="case-study-meta">
+                            <div class="meta-item">
+                                <h5>Technologies Used</h5>
+                                <div class="tech-tags">
+                                    <span class="tech-tag">Python</span>
+                                    <span class="tech-tag">PyTorch</span>
+                                    <span class="tech-tag">Flask</span>
+                                    <span class="tech-tag">SQLite</span>
+                                    <span class="tech-tag">Hugging Face</span>
+                                </div>
+                            </div>
+                            <div class="meta-item">
+                                <h5>Outcome & Impact</h5>
+                                <p>Delivered highly precise classification on GAN/Diffusion fakes, resolving phone EXIF image rotation issues automatically and securing authentication endpoints against credential stuffing.</p>
+                            </div>
+                            <div class="meta-item flex-actions">
+                                <button class="btn btn-outline explore-project-btn" data-project="aegis">
+                                    → explore aegis
+                                </button>
+                                <a href="https://github.com/Aditya-Jadhav150/AEGIS-AI.git" target="_blank" class="case-study-link" id="link-aegis-repo">
+                                    <i class="fa-brands fa-github"></i> repo <i class="fa-solid fa-arrow-right-long"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case Study: Placement Interview Drill Bot -->
+                <div class="case-study" id="cs-interview-bot">
+                    <div class="case-study-header">
+                        <span class="case-study-num">02 /</span>
+                        <h3 class="case-study-title">Placement Interview Drill Bot</h3>
+                        <span class="case-study-category">Multi-Agent AI / Assessment Tools</span>
+                    </div>
+                    <div class="case-study-grid">
+                        <div class="case-study-narrative">
+                            <div class="case-study-block">
+                                <h4>The Problem</h4>
+                                <p>Undergraduates often face intense performance anxiety and lack access to rigorous mock evaluation environments, leading to preparation gaps during competitive campus recruitment drives.</p>
+                            </div>
+                            <div class="case-study-block">
+                                <h4>The Solution</h4>
+                                <p>An AI-driven recruiter simulation dashboard built with Next.js and FastAPI. It extracts real-time signals from candidates' GitHub/LinkedIn profiles, maps them to job descriptions, and spins up a multi-agent panel to conduct interactive voice/text technical drills.</p>
+                            </div>
+                            <div class="case-study-block">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Interactive simulation panel containing agent profiles with distinct interview personas.</li>
+                                    <li>Agent Ada (Risk Evaluator): A cynical evaluator agent designed to challenge developer decisions and test resilience.</li>
+                                    <li>Scraping pipelines running via web scraping APIs (Bright Data, Microlink) to verify candidate contributions.</li>
+                                    <li>Predictive diagnostic output generating skill gap scoring and personalized placement trajectory paths.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="case-study-meta">
+                            <div class="meta-item">
+                                <h5>Technologies Used</h5>
+                                <div class="tech-tags">
+                                    <span class="tech-tag">Next.js</span>
+                                    <span class="tech-tag">TypeScript</span>
+                                    <span class="tech-tag">FastAPI</span>
+                                    <span class="tech-tag">OpenAI API</span>
+                                    <span class="tech-tag">Clerk Auth</span>
+                                </div>
+                            </div>
+                            <div class="meta-item">
+                                <h5>Outcome & Impact</h5>
+                                <p>Tested across a sample student group, yielding a 35% self-reported increase in campus placement interview confidence and 20% higher scores in subsequent technical mock rounds.</p>
+                            </div>
+                            <div class="meta-item flex-actions">
+                                <button class="btn btn-outline explore-project-btn" data-project="interview-bot">
+                                    → explore drill bot
+                                </button>
+                                <a href="https://github.com/Aditya-Jadhav150/TalentLens-AI.git" target="_blank" class="case-study-link" id="link-talentlens-repo">
+                                    <i class="fa-brands fa-github"></i> repo <i class="fa-solid fa-arrow-right-long"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case Study: TnC-Bot -->
+                <div class="case-study" id="cs-tnc-bot">
+                    <div class="case-study-header">
+                        <span class="case-study-num">03 /</span>
+                        <h3 class="case-study-title">TnC-Bot</h3>
+                        <span class="case-study-category">Semantic RAG / Hybrid Systems</span>
+                    </div>
+                    <div class="case-study-grid">
+                        <div class="case-study-narrative">
+                            <div class="case-study-block">
+                                <h4>The Problem</h4>
+                                <p>End-users blindly agree to dense Terms and Conditions legal documents, exposing themselves to hidden privacy concerns and data monetization disclosures due to complex legalese.</p>
+                            </div>
+                            <div class="case-study-block">
+                                <h4>The Solution</h4>
+                                <p>A multi-platform semantic agent running on React, FastAPI, and SQLite. Ingests terms agreements via OCR, indexes them into a local vector embeddings database, and translates legal clauses into readable warning flags.</p>
+                            </div>
+                            <div class="case-study-block">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Manifest V3 Chrome Extension and Java Android Accessibility service for background webpage scraping.</li>
+                                    <li>Document ingestion system utilizing PyMuPDF and Tesseract OCR for text retrieval.</li>
+                                    <li>Local RAG similarity lookup and cosine search queries on mobile-friendly SQLite stores.</li>
+                                    <li>Multi-mode translation engine converting legalese into Simple, Teen, and Technical mode summaries.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="case-study-meta">
+                            <div class="meta-item">
+                                <h5>Technologies Used</h5>
+                                <div class="tech-tags">
+                                    <span class="tech-tag">FastAPI</span>
+                                    <span class="tech-tag">React</span>
+                                    <span class="tech-tag">SQLite</span>
+                                    <span class="tech-tag">Android Studio</span>
+                                    <span class="tech-tag">Chrome APIs</span>
+                                </div>
+                            </div>
+                            <div class="meta-item">
+                                <h5>Outcome & Impact</h5>
+                                <p>Processes complex 10+ page corporate privacy policies in under 60 seconds, flagging high-risk clauses with 94% semantic accuracy to protect digital users.</p>
+                            </div>
+                            <div class="meta-item flex-actions">
+                                <button class="btn btn-outline explore-project-btn" data-project="tnc-bot">
+                                    → explore tnc-bot
+                                </button>
+                                <a href="https://github.com/Aditya-Jadhav150/TnC-Bot.git" target="_blank" class="case-study-link" id="link-tnc-repo">
+                                    <i class="fa-brands fa-github"></i> repo <i class="fa-solid fa-arrow-right-long"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIMENTS SECTION -->
+    <section id="experiments" class="reveal">
+        <div class="container">
+            <h2 class="section-title">Things I'm Exploring</h2>
+            
+            <div class="explorations-grid">
+                
+                <div class="exploration-card">
+                    <span class="exploration-num">/ 01</span>
+                    <h3 class="exploration-title">Artificial Intelligence & RAG</h3>
+                    <p class="exploration-desc">Constructing responsive retrieval augmented pipelines with lightweight vector databases. Focused on prompt engineering, localized embeddings, and latency reduction in custom chatbots.</p>
+                </div>
+
+                <div class="exploration-card">
+                    <span class="exploration-num">/ 02</span>
+                    <h3 class="exploration-title">Machine Learning & Deep Learning</h3>
+                    <p class="exploration-desc">Engineering convolutional networks, transfer learning heads, and custom model regularization (like Mixup batching) to solve highly complex, real-world data and image classification problems.</p>
+                </div>
+
+                <div class="exploration-card">
+                    <span class="exploration-num">/ 03</span>
+                    <h3 class="exploration-title">AI Agents & Multi-Agent Workflows</h3>
+                    <p class="exploration-desc">Structuring frameworks where specialized LLM nodes assume distinct personas, collaborate to solve multi-step problems, and evaluate user responses dynamically.</p>
+                </div>
+
+                <div class="exploration-card">
+                    <span class="exploration-num">/ 04</span>
+                    <h3 class="exploration-title">Full Stack Web Architecture</h3>
+                    <p class="exploration-desc">Creating modern web tools with clean React frontends, high-speed FastAPI routers, and responsive SQL storage. Driven by clean code design and intuitive layouts.</p>
+                </div>
+
+                <div class="exploration-card">
+                    <span class="exploration-num">/ 05</span>
+                    <h3 class="exploration-title">NVIDIA GPU Acceleration</h3>
+                    <p class="exploration-desc">Utilizing GPU-accelerated computing pipelines, CuDNN benchmarks, and PyTorch Automatic Mixed Precision (AMP FP16) to speed up deep neural network training and transformer inference.</p>
+                </div>
+
+                <div class="exploration-card">
+                    <span class="exploration-num">/ 06</span>
+                    <h3 class="exploration-title">Experimental Software & Extensions</h3>
+                    <p class="exploration-desc">Prototyping tools with Manifest V3 Chrome Extension layers and automation scripts, bridging browser APIs and desktop scripts to automate daily development bottlenecks.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="reveal">
+        <div class="container about-wrapper">
+            
+            <!-- Storytelling Column -->
+            <div class="about-story">
+                <h2 class="section-title">My Story</h2>
+                <div class="story-content">
+                    <p>
+                        I am an Information Technology undergraduate student at Maturi Venkata Subba Rao Engineering College, Hyderabad. I write code to build tools at the intersection of Machine Learning, Android Accessibility, and clean editorial web design.
+                    </p>
+                    <p>
+                        I believe software should tell a story and solve real-life friction. Whether it's translating legalese into plain English on web pages, predicting recruitment scores using multi-agent panels, or designing train liveries, my focus is always on building interactive experiences.
+                    </p>
+                    <p>
+                        I'm inspired by high-quality design, clean interfaces, and smooth interactions. As a VibeCoding practitioner, I leverage AI tools to rapidly prototype complex architectures, then spend hours refining details, spacing, and micro-interactions.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Timeline (Achievements & Certifications) -->
+            <div class="about-timeline">
+                <h3 class="timeline-heading">Milestones & Achievements</h3>
+                <div class="compact-timeline">
+                    
+                    <div class="timeline-node">
+                        <span class="node-date">March 2026</span>
+                        <h4 class="node-title">Rank #23 of 303 teams &bull; Forge Inspira Hackathon</h4>
+                        <p class="node-desc">Secured a spot in the Top 8% overall during the hackathon held at IIT Hyderabad. Built and presented AI tools under strict time constraints.</p>
+                    </div>
+
+                    <div class="timeline-node">
+                        <span class="node-date">May 2026</span>
+                        <h4 class="node-title">Docker & Python for ML Credentials &bull; SINE, IIT Bombay</h4>
+                        <p class="node-desc">Completed spoken tutorial invigilated exams on Docker and Python for Machine Learning (IIT Bombay Spoken Tutorial). Earned 4 academic credits with scores of 94.00% and 96.00%.</p>
+                    </div>
+
+                    <div class="timeline-node">
+                        <span class="node-date">May 2026</span>
+                        <h4 class="node-title">AI & Cloud Courseworks &bull; Microsoft Credentials</h4>
+                        <p class="node-desc">Completed certified learning pathways signed by Satya Nadella: <em>Introduction to Generative AI & Agents</em>, <em>Introduction to AI Concepts</em>, and <em>Describe Cloud Computing</em>.</p>
+                    </div>
+
+                    <div class="timeline-node">
+                        <span class="node-date">Ongoing</span>
+                        <h4 class="node-title">Student Member &bull; Computer Society of India (CSI)</h4>
+                        <p class="node-desc">Active contributor in the student chapter, organizing technical discussions and coding workshops.</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CONTACT FORM & LINKS SECTION -->
+    <section id="contact" class="reveal">
+        <div class="container contact-wrapper">
+            
+            <div class="contact-info-panel">
+                <div class="contact-text">
+                    <h2 class="section-title" style="margin-bottom: 1.5rem;">Let's Connect</h2>
+                    <p>I'm currently seeking internship opportunities to apply and expand my engineering skills. Feel free to shoot me an email, reach out on LinkedIn, or fill out the contact form!</p>
+                </div>
+                
+                <div class="contact-methods">
+                    <div class="contact-method-item">
+                        <div class="contact-method-icon">
+                            <i class="fa-regular fa-envelope"></i>
+                        </div>
+                        <div class="contact-method-detail">
+                            <p>Email</p>
+                            <a href="mailto:adityajadhav300405@gmail.com" id="contact-mail">adityajadhav300405@gmail.com</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method-item">
+                        <div class="contact-method-icon">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div class="contact-method-detail">
+                            <p>Location</p>
+                            <span>Hyderabad, India</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="social-links">
+                    <a href="https://linkedin.com" target="_blank" class="social-btn" id="social-linkedin" aria-label="LinkedIn">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://github.com/Aditya-Jadhav150" target="_blank" class="social-btn" id="social-github" aria-label="GitHub">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Contact Form Card -->
+            <div class="glass-card contact-form" id="contact-form-container">
+                <form id="portfolio-contact-form" action="#" method="POST">
+                    <div class="form-group">
+                        <label for="form-name" class="form-label">Full Name</label>
+                        <input type="text" id="form-name" class="form-input" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-email" class="form-label">Email Address</label>
+                        <input type="email" id="form-email" class="form-input" placeholder="yourname@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-message" class="form-label">Message</label>
+                        <textarea id="form-message" class="form-input" placeholder="How can I help you?" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="btn-submit-contact" style="width: 100%; border: none;">
+                        <i class="fa-regular fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
+
+                <!-- Success Confirmation Message -->
+                <div class="form-success-message" id="form-success">
+                    <i class="fa-regular fa-circle-check animate-bounce"></i>
+                    <h4>Message Sent Successfully!</h4>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem;">Thanks for reaching out, Aditya will get back to you shortly.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2026 Aditya Jadhav. All rights reserved.</p>
+            <a href="#hero" class="scroll-to-top" id="btn-scroll-top">Back to Top <i class="fa-solid fa-arrow-up"></i></a>
+        </div>
+    </footer>
+
+    </div> <!-- END OF HOME VIEW -->
+
+    <!-- PROJECT DETAIL VIEW (SPA View) -->
+    <div id="project-detail-view" class="hidden">
+        <!-- Minimal sticky header -->
+        <header class="detail-header" id="detail-header">
+            <div class="container detail-nav-container">
+                <a href="#hero" class="detail-logo" id="detail-logo">Aditya</a>
+                <button class="back-home-btn" id="btn-back-home">home <i class="fa-solid fa-arrow-right-long"></i></button>
+            </div>
+        </header>
+
+        <!-- Full-screen Cover Graphics -->
+        <div class="project-cover-container" id="project-cover-container">
+            <div class="project-cover-bg" id="detail-cover-bg"></div>
+            <div class="project-cover-inner">
+                <div class="cover-visual-elements" id="detail-visual-elements"></div>
+            </div>
+        </div>
+
+        <!-- Project Detail Content -->
+        <div class="project-detail-content" id="project-detail-content">
+            <div class="container">
+                <div class="project-detail-grid">
+                    <!-- Left sticky column: Title, Category, Stats -->
+                    <div class="project-detail-left">
+                        <div class="detail-sticky-meta">
+                            <span class="detail-number" id="detail-number">01 /</span>
+                            <h1 class="detail-title" id="detail-title">Aegis AI</h1>
+                            <p class="detail-category" id="detail-category">Deep Learning / Synthetic Media Detection</p>
+                            
+                            <div class="detail-spec-list">
+                                <div class="detail-spec-item">
+                                    <span class="spec-label">Role</span>
+                                    <span class="spec-value" id="detail-spec-role">Lead Developer</span>
+                                </div>
+                                <div class="detail-spec-item">
+                                    <span class="spec-label">Timeline</span>
+                                    <span class="spec-value" id="detail-spec-timeline">2026 (Ongoing)</span>
+                                </div>
+                                <div class="detail-spec-item">
+                                    <span class="spec-label">Focus</span>
+                                    <span class="spec-value" id="detail-spec-focus">Transformer Inference</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right scroll column: Narrative blocks -->
+                    <div class="project-detail-right" id="detail-narrative-container">
+                        <!-- Content dynamically injected via script.js -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Three.js (WebGL 3D Rendering) CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- GSAP (GreenSock Animation Platform) CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <!-- Custom Script -->
+    <script src="script.js"></script>
+</body>
+</html>
