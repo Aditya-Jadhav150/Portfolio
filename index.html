@@ -5,12 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aditya Jadhav | Personal Brand & Portfolio</title>
     <meta name="description" content="Portfolio of Aditya Jadhav - Information Technology student, AI builder, and developer. Specialized in ML, Android apps, and interactive web tools.">
-    <!-- FontAwesome CDN for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- FontAwesome CDN for Icons with SRI -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha384-iw3OoTErCYJJB9mCa8LNS2hbsQ7M3C0EpIsO/H5+EGAkPGc6rk+V8i04oW/K5xq0" crossorigin="anonymous">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- BACKGROUND NEURAL NETWORK WebGL CANVAS -->
+    <canvas id="neural-background-canvas"></canvas>
+    <!-- FOREGROUND NEURAL CURSOR CANVAS -->
+    <canvas id="neural-cursor-canvas"></canvas>
 
     <!-- BACKGROUND GRID LINES OVERLAY -->
     <div class="grid-lines-overlay">
@@ -208,7 +212,7 @@
                                 <button class="btn btn-outline explore-project-btn" data-project="aegis">
                                     → explore aegis
                                 </button>
-                                <a href="https://github.com/Aditya-Jadhav150/AEGIS-AI.git" target="_blank" class="case-study-link" id="link-aegis-repo">
+                                <a href="https://github.com/Aditya-Jadhav150/AEGIS-AI.git" target="_blank" rel="noopener noreferrer" class="case-study-link" id="link-aegis-repo">
                                     <i class="fa-brands fa-github"></i> repo <i class="fa-solid fa-arrow-right-long"></i>
                                 </a>
                             </div>
@@ -262,7 +266,7 @@
                                 <button class="btn btn-outline explore-project-btn" data-project="interview-bot">
                                     → explore drill bot
                                 </button>
-                                <a href="https://github.com/Aditya-Jadhav150/TalentLens-AI.git" target="_blank" class="case-study-link" id="link-talentlens-repo">
+                                <a href="https://github.com/Aditya-Jadhav150/TalentLens-AI.git" target="_blank" rel="noopener noreferrer" class="case-study-link" id="link-talentlens-repo">
                                     <i class="fa-brands fa-github"></i> repo <i class="fa-solid fa-arrow-right-long"></i>
                                 </a>
                             </div>
@@ -316,7 +320,7 @@
                                 <button class="btn btn-outline explore-project-btn" data-project="tnc-bot">
                                     → explore tnc-bot
                                 </button>
-                                <a href="https://github.com/Aditya-Jadhav150/TnC-Bot.git" target="_blank" class="case-study-link" id="link-tnc-repo">
+                                <a href="https://github.com/Aditya-Jadhav150/TnC-Bot.git" target="_blank" rel="noopener noreferrer" class="case-study-link" id="link-tnc-repo">
                                     <i class="fa-brands fa-github"></i> repo <i class="fa-solid fa-arrow-right-long"></i>
                                 </a>
                             </div>
@@ -463,10 +467,10 @@
                 </div>
 
                 <div class="social-links">
-                    <a href="https://linkedin.com" target="_blank" class="social-btn" id="social-linkedin" aria-label="LinkedIn">
+                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-btn" id="social-linkedin" aria-label="LinkedIn">
                         <i class="fa-brands fa-linkedin-in"></i>
                     </a>
-                    <a href="https://github.com/Aditya-Jadhav150" target="_blank" class="social-btn" id="social-github" aria-label="GitHub">
+                    <a href="https://github.com/Aditya-Jadhav150" target="_blank" rel="noopener noreferrer" class="social-btn" id="social-github" aria-label="GitHub">
                         <i class="fa-brands fa-github"></i>
                     </a>
                 </div>
@@ -474,18 +478,21 @@
 
             <!-- Contact Form Card -->
             <div class="glass-card contact-form" id="contact-form-container">
-                <form id="portfolio-contact-form" action="#" method="POST">
+                <!-- Replace YOUR_FORM_ID with your actual Formspree endpoint ID -->
+                <form id="portfolio-contact-form" action="https://formspree.io/f/xqeoovqy" method="POST">
+                    <!-- Honeypot field to prevent spam bots -->
+                    <input type="text" name="_gotcha" style="display:none" />
                     <div class="form-group">
                         <label for="form-name" class="form-label">Full Name</label>
-                        <input type="text" id="form-name" class="form-input" placeholder="Your Name" required>
+                        <input type="text" id="form-name" name="name" class="form-input" placeholder="Your Name" required>
                     </div>
                     <div class="form-group">
                         <label for="form-email" class="form-label">Email Address</label>
-                        <input type="email" id="form-email" class="form-input" placeholder="yourname@example.com" required>
+                        <input type="email" id="form-email" name="email" class="form-input" placeholder="yourname@example.com" required>
                     </div>
                     <div class="form-group">
                         <label for="form-message" class="form-label">Message</label>
-                        <textarea id="form-message" class="form-input" placeholder="How can I help you?" required></textarea>
+                        <textarea id="form-message" name="message" class="form-input" placeholder="How can I help you?" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary" id="btn-submit-contact" style="width: 100%; border: none;">
                         <i class="fa-regular fa-paper-plane"></i> Send Message
@@ -568,11 +575,15 @@
         </div>
     </div>
 
-    <!-- Three.js (WebGL 3D Rendering) CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <!-- GSAP (GreenSock Animation Platform) CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <!-- Three.js (WebGL 3D Rendering) CDN with SRI -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" integrity="sha384-CI3ELBVUz9XQO+97x6nwMDPosPR5XvsxW2ua7N1Xeygeh1IxtgqtCkGfQY9WWdHu" crossorigin="anonymous"></script>
+    <!-- GSAP (GreenSock Animation Platform) CDN with SRI -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha384-d+vyQ0dYcymoP8ndq2hW7FGC50nqGdXUEgoOUGxbbkAJwZqL7h+jKN0GGgn9hFDS" crossorigin="anonymous"></script>
     <!-- Custom Script -->
     <script src="script.js"></script>
+    <!-- Neural Network Background Layer -->
+    <script src="neural_network_cursor.js"></script>
+    <!-- Neural Cursor Overlay -->
+    <script src="cursor.js"></script>
 </body>
 </html>

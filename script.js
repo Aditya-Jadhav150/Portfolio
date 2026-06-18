@@ -1,5 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    // Simple HTML sanitizer to prevent Self-XSS
+    function escapeHTML(str) {
+        if (typeof str !== 'string') return str;
+        return str.replace(/[&<>'"]/g, tag => ({
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            "'": '&#39;',
+            '"': '&quot;'
+        }[tag]));
+    }
+
     /* ==========================================================================
        SIDEBAR DRAWER TOGGLE (Chat Assistant Open/Close)
        ========================================================================== */
@@ -1066,7 +1078,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="message-content">
                     <span class="message-sender">You</span>
                     <div class="message-bubble">
-                        ${text}
+                        ${escapeHTML(text)}
                         <span class="message-timestamp">${timeStr}</span>
                     </div>
                 </div>
@@ -1443,13 +1455,16 @@ Type 'work 1' through 'work 3' (e.g. 'work 1') to inspect a project.`,
         });
 
         hiddenInput.addEventListener('keydown', (e) => {
+            if (typeof window.triggerNeuralKeystrokePulse === 'function') {
+                window.triggerNeuralKeystrokePulse();
+            }
             if (e.key === 'Enter') {
                 const rawCmd = hiddenInput.value;
                 
                 // Echo the prompt command first
                 const cmdLine = document.createElement('div');
                 cmdLine.className = 'console-line';
-                cmdLine.innerHTML = `<div class="console-prompt">visitor@aditya:~$ <span>${rawCmd}</span></div>`;
+                cmdLine.innerHTML = `<div class="console-prompt">visitor@aditya:~$ <span>${escapeHTML(rawCmd)}</span></div>`;
                 consoleLogs.insertBefore(cmdLine, livePrompt);
 
                 // Execute command
@@ -1481,6 +1496,10 @@ Type 'work 1' through 'work 3' (e.g. 'work 1') to inspect a project.`,
                     inputDisplay.textContent += cmd[charIndex];
                     charIndex++;
 
+                    if (typeof window.triggerNeuralKeystrokePulse === 'function') {
+                        window.triggerNeuralKeystrokePulse();
+                    }
+
                     if (charIndex === cmd.length) {
                         clearInterval(typingInterval);
                         setTimeout(() => {
@@ -1488,7 +1507,7 @@ Type 'work 1' through 'work 3' (e.g. 'work 1') to inspect a project.`,
                             const rawCmd = hiddenInput.value;
                             const cmdLine = document.createElement('div');
                             cmdLine.className = 'console-line';
-                            cmdLine.innerHTML = `<div class="console-prompt">visitor@aditya:~$ <span>${rawCmd}</span></div>`;
+                            cmdLine.innerHTML = `<div class="console-prompt">visitor@aditya:~$ <span>${escapeHTML(rawCmd)}</span></div>`;
                             consoleLogs.insertBefore(cmdLine, livePrompt);
 
                             executeTerminalCommand(rawCmd);
@@ -1555,7 +1574,7 @@ Type 'work 1' through 'work 3' (e.g. 'work 1') to inspect a project.`,
 
 
     /* ==========================================================================
-       CONTACT FORM SUCCESS INTERACTION
+       CONTACT FORM SUCCESS INTERACTION (Formspree fetch)
        ========================================================================== */
     const contactForm = document.getElementById('portfolio-contact-form');
     const formSuccess = document.getElementById('form-success');
@@ -1569,18 +1588,42 @@ Type 'work 1' through 'work 3' (e.g. 'work 1') to inspect a project.`,
             const originalText = submitBtn.innerHTML;
             submitBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Sending...`;
 
-            setTimeout(() => {
-                contactForm.style.display = 'none';
-                formSuccess.style.display = 'flex';
-                formSuccess.style.opacity = '0';
-                
-                setTimeout(() => {
-                    formSuccess.style.transition = 'opacity 0.5s ease';
-                    formSuccess.style.opacity = '1';
-                }, 50);
+            // Setup Formspree AJAX submission
+            const data = new FormData(contactForm);
+            fetch(contactForm.action, {
+                method: contactForm.method,
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    contactForm.style.display = 'none';
+                    formSuccess.style.display = 'flex';
+                    formSuccess.style.opacity = '0';
+                    
+                    setTimeout(() => {
+                        formSuccess.style.transition = 'opacity 0.5s ease';
+                        formSuccess.style.opacity = '1';
+                    }, 50);
 
-                contactForm.reset();
-            }, 1200);
+                    contactForm.reset();
+                } else {
+                    response.json().then(data => {
+                        if (Object.hasOwn(data, 'errors')) {
+                            alert(data["errors"].map(error => error["message"]).join(", "));
+                        } else {
+                            alert("Oops! There was a problem submitting your form");
+                        }
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalText;
+                    });
+                }
+            }).catch(error => {
+                alert("Oops! There was a problem submitting your form");
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+            });
         });
     }
 

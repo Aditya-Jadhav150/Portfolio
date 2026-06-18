@@ -2109,3 +2109,34 @@ footer {
         max-width: 90%;
     }
 }
+
+/* BACKGROUND NEURAL NETWORK WebGL CANVAS */
+#neural-background-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* =========================================================
+   NEURAL CURSOR SYSTEM
+   ========================================================= */
+
+/* Hide default cursor globally */
+*, *::before, *::after {
+    cursor: none !important;
+}
+
+/* Neural cursor canvas — top of everything */
+#neural-cursor-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 99999;
+    pointer-events: none;
+}
