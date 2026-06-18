@@ -1574,50 +1574,59 @@ Type 'work 1' through 'work 3' (e.g. 'work 1') to inspect a project.`,
 
 
     /* ==========================================================================
-       CONTACT FORM SUCCESS INTERACTION (Mailto Fallback)
+       CONTACT FORM SUCCESS INTERACTION (Web3Forms API)
        ========================================================================== */
     const contactForm = document.getElementById('portfolio-contact-form');
     const formSuccess = document.getElementById('form-success');
     const submitBtn = document.getElementById('btn-submit-contact');
 
     if (contactForm && formSuccess && submitBtn) {
-        contactForm.addEventListener('submit', (e) => {
+        contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            
-            const name = document.getElementById('form-name').value.trim();
-            const email = document.getElementById('form-email').value.trim();
-            const message = document.getElementById('form-message').value.trim();
             
             submitBtn.disabled = true;
             const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Preparing Email...`;
+            submitBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Sending...`;
 
-            // Construct mailto URL
-            const targetEmail = "adityajadhav300405@gmail.com";
-            const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
-            const body = encodeURIComponent(`${message}\n\n---\nSender Email: ${email}\nSender Name: ${name}`);
-            const mailtoUrl = `mailto:${targetEmail}?subject=${subject}&body=${body}`;
+            // Prepare form data for Web3Forms
+            const formData = new FormData(contactForm);
+            // Required to return JSON instead of redirecting
+            formData.append("replyto", document.getElementById('form-email').value);
 
-            setTimeout(() => {
-                // Open default email client
-                window.location.href = mailtoUrl;
-
-                // Show success UI locally
-                contactForm.style.display = 'none';
-                formSuccess.style.display = 'flex';
-                formSuccess.style.opacity = '0';
+            try {
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
                 
-                setTimeout(() => {
-                    formSuccess.style.transition = 'opacity 0.5s ease';
-                    formSuccess.style.opacity = '1';
-                }, 50);
+                const result = await response.json();
 
-                contactForm.reset();
-                
-                // Reset button in case they close the success message later
+                if (response.status === 200) {
+                    // Show success UI
+                    contactForm.style.display = 'none';
+                    formSuccess.style.display = 'flex';
+                    formSuccess.style.opacity = '0';
+                    
+                    setTimeout(() => {
+                        formSuccess.style.transition = 'opacity 0.5s ease';
+                        formSuccess.style.opacity = '1';
+                    }, 50);
+
+                    contactForm.reset();
+                } else {
+                    console.error("Web3Forms Error:", result);
+                    alert("Oops! Something went wrong: " + result.message);
+                }
+            } catch (error) {
+                console.error("Fetch error:", error);
+                alert("Something went wrong. Please check your internet connection and try again.");
+            } finally {
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = originalText;
-            }, 800);
+            }
         });
     }
 
