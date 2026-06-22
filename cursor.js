@@ -434,20 +434,98 @@
         /* ==================================================
            CORE NODE DRAW
         ================================================== */
-        // Fade out core completely on buttons so native pointer is clear
-        const coreAlpha = isButtonState ? 0 : 1.0;
-        const corePulse = 1.0 + Math.sin(time * 5.5) * 0.15;
-        const coreSize = (isCardState ? 6 : isTerminalState ? 5 : 5) * corePulse * expansionScale;
+        if (isButtonState) {
+            // ---- BUTTON MODE: Clean pointer arrow + floating label ----
 
-        if (!isButtonState && coreAlpha > 0) {
+            // Draw a sleek pointer arrow
+            const pointerScale = 1.0 + Math.sin(time * 4) * 0.05; // subtle pulse
+            const px = cursor.x;
+            const py = cursor.y;
+            const s = 18 * pointerScale;
+
+            ctx.save();
+            // Glow behind pointer
+            const pointerGlow = ctx.createRadialGradient(px + 4, py + 6, 0, px + 4, py + 6, s * 1.8);
+            pointerGlow.addColorStop(0, 'rgba(34, 211, 238, 0.15)');
+            pointerGlow.addColorStop(1, 'rgba(34, 211, 238, 0)');
+            ctx.fillStyle = pointerGlow;
+            ctx.beginPath();
+            ctx.arc(px + 4, py + 6, s * 1.8, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Pointer arrow shape (classic cursor arrow)
+            ctx.beginPath();
+            ctx.moveTo(px, py);                    // tip
+            ctx.lineTo(px, py + s);                // down left
+            ctx.lineTo(px + s * 0.3, py + s * 0.75); // notch
+            ctx.lineTo(px + s * 0.55, py + s * 1.1);  // tail right
+            ctx.lineTo(px + s * 0.7, py + s * 0.95);  // tail right top
+            ctx.lineTo(px + s * 0.4, py + s * 0.6);  // notch inner
+            ctx.lineTo(px + s * 0.75, py + s * 0.6); // wing right
+            ctx.closePath();
+
+            // Fill with gradient
+            const arrowGrad = ctx.createLinearGradient(px, py, px + s * 0.4, py + s);
+            arrowGrad.addColorStop(0, 'rgba(255, 255, 255, 0.95)');
+            arrowGrad.addColorStop(1, 'rgba(34, 211, 238, 0.85)');
+            ctx.fillStyle = arrowGrad;
+            ctx.fill();
+
+            // Subtle border
+            ctx.strokeStyle = 'rgba(34, 211, 238, 0.6)';
+            ctx.lineWidth = 0.8;
+            ctx.stroke();
+            ctx.restore();
+
+            // ---- Floating label ABOVE the pointer with gap ----
+            if (stateLabel && stateLerp > 0.05) {
+                const labelAlpha = Math.min(stateLerp * 1.5, 1.0);
+                const labelY = py - 28; // gap above cursor
+                const bobOffset = Math.sin(time * 3) * 2; // gentle bob
+
+                ctx.save();
+                ctx.font = `bold 10px 'Fira Code', monospace`;
+                const tw = ctx.measureText(stateLabel).width;
+                const pillW = tw + 24;
+                const pillH = 22;
+                const pillX = px + 4 - pillW / 2;
+                const pillY = labelY + bobOffset - pillH / 2;
+
+                // Pill background with glassmorphism
+                ctx.fillStyle = `rgba(0, 0, 0, ${labelAlpha * 0.7})`;
+                ctx.strokeStyle = `rgba(34, 211, 238, ${labelAlpha * 0.5})`;
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.roundRect(pillX, pillY, pillW, pillH, 6);
+                ctx.fill();
+                ctx.stroke();
+
+                // Connecting line from label to pointer tip
+                ctx.strokeStyle = `rgba(34, 211, 238, ${labelAlpha * 0.25})`;
+                ctx.lineWidth = 0.6;
+                ctx.setLineDash([3, 3]);
+                ctx.beginPath();
+                ctx.moveTo(px + 4, pillY + pillH);
+                ctx.lineTo(px + 4, py - 4);
+                ctx.stroke();
+                ctx.setLineDash([]);
+
+                // Label text
+                ctx.fillStyle = `rgba(34, 211, 238, ${labelAlpha})`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(stateLabel, px + 4, labelY + bobOffset);
+
+                ctx.restore();
+            }
+
+        } else {
+            // ---- DEFAULT / CARD / TERMINAL: Draw the neural core ----
+            const coreAlpha = 1.0;
+            const corePulse = 1.0 + Math.sin(time * 5.5) * 0.15;
+            const coreSize = (isCardState ? 6 : isTerminalState ? 5 : 5) * corePulse * expansionScale;
             drawGlowNode(cursor.x, cursor.y, coreSize, coreAlpha, '34, 211, 238', coreSize * 4);
         }
-
-        /* ==================================================
-           BUTTON MORPH LABEL (REMOVED FOR CLEAN POINTER)
-        ================================================== */
-        // We no longer draw the [ VIEW ] or [ CHAT ] pill labels because
-        // we are yielding to the clean, native system pointer on hover.
 
         /* ==================================================
            TERMINAL MORPH LABEL
