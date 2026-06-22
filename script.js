@@ -842,6 +842,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>
         `,
+        project_exonyx: `
+            <div class="chat-inline-card">
+                <h4>🚀 EXONYX (Full-Stack AI App)</h4>
+                <p>A high-performance modern web application integrating advanced AI workflows to streamline digital processes. Deployed seamlessly on Vercel with a responsive Next.js frontend architecture.</p>
+                <div class="tech-list">
+                    <span class="tech-tag">Next.js</span>
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">AI/ML</span>
+                    <span class="tech-tag">Vercel</span>
+                </div>
+                <div class="chat-card-footer">
+                    <a href="https://github.com/Aditya-Jadhav150/EXONYX.git" target="_blank" class="chat-card-link"><i class="fa-brands fa-github"></i> Repository</a>
+                </div>
+            </div>
+        `,
         certs: `
             <div class="chat-inline-card">
                 <h4>🛡️ Docker & Python for ML Training</h4>
@@ -898,6 +913,7 @@ document.addEventListener('DOMContentLoaded', () => {
         projects: {
             text: "Aditya has built several AI-driven and fullstack projects. I can compile details for these. Select a project to inspect:",
             options: [
+                { text: "🚀 EXONYX", next: "proj_exonyx" },
                 { text: "🛡️ Aegis AI", next: "proj_deepfake" },
                 { text: "🎯 TalentLens-AI (Agents)", next: "proj_talentlens" },
                 { text: "🛡️ TnC-Bot (RAG/Android)", next: "proj_tnc" },
@@ -959,6 +975,7 @@ document.addEventListener('DOMContentLoaded', () => {
             text: "Here is the compiled project profile for TnC-Bot:",
             rich: templates.project_tnc,
             options: [
+                { text: "🚀 EXONYX", next: "proj_exonyx" },
                 { text: "🛡️ Aegis AI", next: "proj_deepfake" },
                 { text: "🎯 TalentLens-AI", next: "proj_talentlens" },
                 { text: "📁 Other Projects", next: "projects" },
@@ -974,6 +991,7 @@ document.addEventListener('DOMContentLoaded', () => {
             text: "Here is the compiled project profile for TalentLens-AI:",
             rich: templates.project_talentlens,
             options: [
+                { text: "🚀 EXONYX", next: "proj_exonyx" },
                 { text: "🛡️ Aegis AI", next: "proj_deepfake" },
                 { text: "🛡️ TnC-Bot", next: "proj_tnc" },
                 { text: "📁 Other Projects", next: "projects" },
@@ -989,6 +1007,23 @@ document.addEventListener('DOMContentLoaded', () => {
             text: "Here are the details for the Aegis AI project:",
             rich: templates.project_deepfake,
             options: [
+                { text: "🚀 EXONYX", next: "proj_exonyx" },
+                { text: "🎯 TalentLens-AI", next: "proj_talentlens" },
+                { text: "🛡️ TnC-Bot", next: "proj_tnc" },
+                { text: "📁 Other Projects", next: "projects" },
+                { text: "🔙 Main Menu", next: "main_menu" }
+            ]
+        },
+        proj_exonyx: {
+            compile: "vibecode --deploy EXONYX",
+            compileOutput: `[VibeCoding] Compiling Next.js pages... OK
+[VibeCoding] Connecting AI integration pipelines... OK
+[VibeCoding] Pushing build to Vercel edge network... OK
+[Success] EXONYX live on production!`,
+            text: "Here is the compiled project profile for EXONYX:",
+            rich: templates.project_exonyx,
+            options: [
+                { text: "🛡️ Aegis AI", next: "proj_deepfake" },
                 { text: "🎯 TalentLens-AI", next: "proj_talentlens" },
                 { text: "🛡️ TnC-Bot", next: "proj_tnc" },
                 { text: "📁 Other Projects", next: "projects" },
@@ -1349,8 +1384,9 @@ Practitioner of VibeCoding — utilizing advanced AI tools to engineer robust so
   1. Aegis AI (Deep Learning / Synthetic Media Detection)
   2. Placement Interview Drill Bot (Next.js / Multi-Agent Simulation)
   3. TnC-Bot (Vector RAG legal clauses interpreter)
+  4. EXONYX (Full-Stack AI Application)
 
-Type 'work 1' through 'work 3' (e.g. 'work 1') to inspect a project.`,
+Type 'work 1' through 'work 4' (e.g. 'work 1') to inspect a project.`,
             type: "info"
         },
         "work 1": {
@@ -1375,6 +1411,14 @@ Type 'work 1' through 'work 3' (e.g. 'work 1') to inspect a project.`,
 • Tech: FastAPI, React, SQLite, Android Studio, Chrome APIs
 • Description: Document Ingestion engine using vector similarity search, Chrome extension scraping, and Android overlays to translate legalese into plain text warnings.
 • Impact: Flags high-risk clauses in 10+ page agreements with 94% accuracy.`,
+            type: "success"
+        },
+        "work 4": {
+            output: `[04 / EXONYX]
+• Category: Full-Stack AI Application
+• Tech: Next.js, React, AI/ML, Vercel
+• Description: A high-performance modern web application integrating advanced AI workflows to streamline digital processes.
+• Impact: Deployed seamlessly on Vercel with a responsive Next.js frontend architecture.`,
             type: "success"
         },
         experiments: {
@@ -1421,6 +1465,7 @@ Type 'work 1' through 'work 3' (e.g. 'work 1') to inspect a project.`,
         if (['work 1', 'work1', 'project 1', 'project1'].includes(lookup)) lookup = 'work 1';
         if (['work 2', 'work2', 'project 2', 'project2'].includes(lookup)) lookup = 'work 2';
         if (['work 3', 'work3', 'project 3', 'project3'].includes(lookup)) lookup = 'work 3';
+        if (['work 4', 'work4', 'project 4', 'project4'].includes(lookup)) lookup = 'work 4';
         
         if (['skill', 'skills'].includes(lookup)) lookup = 'skills';
         if (['about', 'bio'].includes(lookup)) lookup = 'about';
@@ -1789,6 +1834,46 @@ Type 'work 1' through 'work 3' (e.g. 'work 1') to inspect a project.`,
                     <p>Processes complex 10+ page corporate privacy policies in under 60 seconds, flagging high-risk clauses with 94% semantic accuracy to protect digital users.</p>
                     <div class="detail-outcome-box">
                         <p style="font-weight: 700; color: #ffffff; font-size: 1.1rem; margin-top: 10px;">94% Clause Risk Classification Precision</p>
+                    </div>
+                </div>
+            `
+        },
+        exonyx: {
+            num: "04 /",
+            title: "EXONYX",
+            category: "Full-Stack AI Application",
+            role: "Lead Developer",
+            timeline: "2026",
+            focus: "Web Integration",
+            gradientClass: "aegis-gradient",
+            narrative: `
+                <div class="detail-block">
+                    <h4>The Project</h4>
+                    <p>A high-performance modern web application integrating advanced AI workflows to streamline digital processes. Developed to provide robust functionality combined with seamless user interactions.</p>
+                </div>
+                <div class="detail-block">
+                    <h4>Key Architecture Features</h4>
+                    <ul>
+                        <li>Seamless full-stack integration deployed on Vercel for edge network performance.</li>
+                        <li>Dynamic, responsive frontend architecture built using Next.js and React.</li>
+                        <li>Integration of AI/ML services for enhanced data processing.</li>
+                        <li>Optimized for speed, accessibility, and modern web standards.</li>
+                    </ul>
+                </div>
+                <div class="detail-block">
+                    <h4>Technologies Employed</h4>
+                    <div class="detail-tech-list">
+                        <span class="detail-tech-tag">Next.js</span>
+                        <span class="detail-tech-tag">React</span>
+                        <span class="detail-tech-tag">AI/ML</span>
+                        <span class="detail-tech-tag">Vercel</span>
+                    </div>
+                </div>
+                <div class="detail-block">
+                    <h4>Outcome & Metrics</h4>
+                    <p>Successfully shipped a stable production build to Vercel, ensuring high uptime, rapid edge delivery, and scalable infrastructure.</p>
+                    <div class="detail-outcome-box">
+                        <p style="font-weight: 700; color: #ffffff; font-size: 1.1rem; margin-top: 10px;">Successfully Deployed & Scaled on Vercel Edge</p>
                     </div>
                 </div>
             `
