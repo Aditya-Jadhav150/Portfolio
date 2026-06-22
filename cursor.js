@@ -149,19 +149,20 @@
             return;
         }
 
-        if (el.matches('.case-study, .case-study *, .exploration-card, .exploration-card *')) {
-            cursorState = 'card';
-            stateLabel = '';
-            return;
-        }
-
         if (el.matches('#chat-fab-trigger, #chat-fab-trigger *')) {
             cursorState = 'button-chat';
             stateLabel = '[ CHAT ]';
             return;
         }
 
+        // Buttons and links MUST be checked before card state
         if (el.matches('.btn, .btn *, .explore-project-btn, .explore-project-btn *, .terminal-chip, .terminal-chip *, .chip-btn, .chip-btn *')) {
+            cursorState = 'button-view';
+            stateLabel = '[ VIEW ]';
+            return;
+        }
+
+        if (el.matches('.case-study-link, .case-study-link *, .flex-actions a, .flex-actions a *')) {
             cursorState = 'button-view';
             stateLabel = '[ VIEW ]';
             return;
@@ -170,6 +171,12 @@
         if (el.matches('a, a *, button, button *')) {
             cursorState = 'button-view';
             stateLabel = '[ VIEW ]';
+            return;
+        }
+
+        if (el.matches('.case-study, .case-study *, .exploration-card, .exploration-card *')) {
+            cursorState = 'card';
+            stateLabel = '';
             return;
         }
 
