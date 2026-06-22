@@ -797,14 +797,13 @@ document.addEventListener('DOMContentLoaded', () => {
         `,
         project_tnc: `
             <div class="chat-inline-card">
-                <h4>🛡️ TnC-Bot (Legal Interpreter)</h4>
-                <p>An AI-powered Terms & Conditions analyzer featuring a React SPA, FastAPI backend, SQLite vector database, Chrome extension, and Android Accessibility Service. Ingests PDFs/Scans using PyMuPDF and PyTesseract OCR, performs local cosine similarity search, and translates legalese to plain language.</p>
+                <h4>🛡️ TnC-Bot (Browser Extension)</h4>
+                <p>An AI-powered Chrome extension that simplifies Terms & Conditions and Privacy Policies into plain English. It features a lightweight floating assistant to scan webpages instantly and provide source-grounded explanations conversationally.</p>
                 <div class="tech-list">
-                    <span class="tech-tag">FastAPI</span>
-                    <span class="tech-tag">React</span>
-                    <span class="tech-tag">SQLite</span>
-                    <span class="tech-tag">Android Service</span>
-                    <span class="tech-tag">Chrome Ext</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">Chrome APIs</span>
+                    <span class="tech-tag">AI/LLM</span>
+                    <span class="tech-tag">HTML/CSS</span>
                 </div>
                 <div class="chat-card-footer">
                     <a href="https://github.com/Aditya-Jadhav150/TnC-Bot.git" target="_blank" class="chat-card-link"><i class="fa-brands fa-github"></i> Repository</a>
@@ -1407,10 +1406,10 @@ Type 'work 1' through 'work 4' (e.g. 'work 1') to inspect a project.`,
         },
         "work 3": {
             output: `[03 / TnC-Bot]
-• Category: Semantic RAG / Hybrid Systems
-• Tech: FastAPI, React, SQLite, Android Studio, Chrome APIs
-• Description: Document Ingestion engine using vector similarity search, Chrome extension scraping, and Android overlays to translate legalese into plain text warnings.
-• Impact: Flags high-risk clauses in 10+ page agreements with 94% accuracy.`,
+• Category: Browser Extension / Conversational AI
+• Tech: JavaScript, Chrome Extension API, AI/LLM, HTML/CSS
+• Description: AI-powered Chrome extension that simplifies legal agreements and privacy policies.
+• Impact: Provides instant, source-grounded explanations via a floating conversational assistant directly on the webpage.`,
             type: "success"
         },
         "work 4": {
@@ -1796,44 +1795,42 @@ Type 'work 1' through 'work 4' (e.g. 'work 1') to inspect a project.`,
         "tnc-bot": {
             num: "03 /",
             title: "TnC-Bot",
-            category: "Semantic RAG / Hybrid Systems",
-            role: "Full Stack Dev",
+            category: "Browser Extension / Conversational AI",
+            role: "Developer",
             timeline: "2026",
-            focus: "Local RAG Vector Ingestion",
+            focus: "Conversational AI Interface",
             gradientClass: "tnc-gradient",
             narrative: `
                 <div class="detail-block">
                     <h4>The Problem</h4>
-                    <p>End-users blindly agree to dense Terms and Conditions legal documents, exposing themselves to hidden privacy concerns and data monetization disclosures due to complex legalese.</p>
+                    <p>End-users blindly agree to dense Terms and Conditions, Privacy Policies, and software licenses due to overly complex and unreadable legalese.</p>
                 </div>
                 <div class="detail-block">
                     <h4>The Solution</h4>
-                    <p>A multi-platform semantic agent running on React, FastAPI, and SQLite. Ingests terms agreements via OCR, indexes them into a local vector embeddings database, and translates legal clauses into readable warning flags.</p>
+                    <p>An AI-powered Chrome extension that simplifies complex legal agreements into plain English. It features a lightweight floating assistant to instantly scan webpages, allowing users to understand key clauses and ask specific questions conversationally.</p>
                 </div>
                 <div class="detail-block">
                     <h4>Key Architecture Features</h4>
                     <ul>
-                        <li>Manifest V3 Chrome Extension and Java Android Accessibility service for background webpage scraping.</li>
-                        <li>Document ingestion system utilizing PyMuPDF and Tesseract OCR for text retrieval.</li>
-                        <li>Local RAG similarity lookup and cosine search queries on mobile-friendly SQLite stores.</li>
-                        <li>Multi-mode translation engine converting legalese into Simple, Teen, and Technical mode summaries.</li>
+                        <li>Manifest V3 Chrome Extension architecture for secure, background webpage scanning.</li>
+                        <li>Interactive floating conversational assistant for direct Q&A about the page's legal text.</li>
+                        <li>Provides source-grounded explanations directly linked to the original document clauses.</li>
                     </ul>
                 </div>
                 <div class="detail-block">
                     <h4>Technologies Employed</h4>
                     <div class="detail-tech-list">
-                        <span class="detail-tech-tag">FastAPI</span>
-                        <span class="detail-tech-tag">React</span>
-                        <span class="detail-tech-tag">SQLite</span>
-                        <span class="detail-tech-tag">Android Studio</span>
-                        <span class="detail-tech-tag">Chrome APIs</span>
+                        <span class="detail-tech-tag">JavaScript</span>
+                        <span class="detail-tech-tag">Chrome Extension API</span>
+                        <span class="detail-tech-tag">AI/LLM</span>
+                        <span class="detail-tech-tag">HTML/CSS</span>
                     </div>
                 </div>
                 <div class="detail-block">
                     <h4>Outcome & Metrics</h4>
-                    <p>Processes complex 10+ page corporate privacy policies in under 60 seconds, flagging high-risk clauses with 94% semantic accuracy to protect digital users.</p>
+                    <p>Empowers users to fully understand their digital agreements by providing fast, conversational, and accurate plain-English translations of complex legalese directly in the browser.</p>
                     <div class="detail-outcome-box">
-                        <p style="font-weight: 700; color: #ffffff; font-size: 1.1rem; margin-top: 10px;">94% Clause Risk Classification Precision</p>
+                        <p style="font-weight: 700; color: #ffffff; font-size: 1.1rem; margin-top: 10px;">Instant Conversational Simplification</p>
                     </div>
                 </div>
             `
