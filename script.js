@@ -1845,7 +1845,7 @@ Type 'work 1' through 'work 4' (e.g. 'work 1') to inspect a project.`,
             role: "Lead Developer",
             timeline: "2026",
             focus: "Web Integration",
-            gradientClass: "aegis-gradient",
+            gradientClass: "exonyx-gradient",
             narrative: `
                 <div class="detail-block">
                     <h4>The Project</h4>
