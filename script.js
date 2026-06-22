@@ -1368,7 +1368,9 @@ document.addEventListener('DOMContentLoaded', () => {
   about        - Read my journey and engineering outlook
   skills       - View my tech stack matrix
   contact      - Get in touch with me
-  clear        - Clear the terminal screen`,
+  clear        - Clear the terminal screen
+
+  ✨ Secret: Try 'matrix', 'neofetch', 'sudo', 'hack', 'coffee', or 'whoami' ;)`,
             type: "info"
         },
         about: {
@@ -1380,10 +1382,10 @@ Practitioner of VibeCoding — utilizing advanced AI tools to engineer robust so
         },
         work: {
             output: `Core Projects:
-  1. Aegis AI (Deep Learning / Synthetic Media Detection)
-  2. Placement Interview Drill Bot (Next.js / Multi-Agent Simulation)
-  3. TnC-Bot (Vector RAG legal clauses interpreter)
-  4. EXONYX (Full-Stack AI Application)
+  1. Aegis AI (Forensic Platform / Deepfake Detection)
+  2. Placement Interview Drill Bot (Multi-Agent AI / Assessment)
+  3. TnC-Bot (Browser Extension / Conversational AI)
+  4. EXONYX (Astronomy / AI Data Pipeline)
 
 Type 'work 1' through 'work 4' (e.g. 'work 1') to inspect a project.`,
             type: "info"
@@ -1444,6 +1446,56 @@ Type 'work 1' through 'work 4' (e.g. 'work 1') to inspect a project.`,
   • GitHub:   https://github.com/Aditya-Jadhav150
   • LinkedIn: https://linkedin.com`,
             type: "info"
+        },
+        // === EASTER EGG COMMANDS ===
+        sudo: {
+            output: `⛔ Permission denied: nice try, but you're not root here.
+  (You think I'd give you admin on my portfolio?)`,
+            type: "warning"
+        },
+        neofetch: {
+            output: `   ╔══════════════════════════════╗
+   ║   aditya@portfolio            ║
+   ╠══════════════════════════════╣
+   ║   OS:      PortfolioOS v3.0   ║
+   ║   Shell:   Aditya-AI Terminal ║
+   ║   Uptime:  since 2004         ║
+   ║   IDE:     VS Code + Gemini   ║
+   ║   GPU:     NVIDIA Accelerated ║
+   ║   Theme:   Neural Dark        ║
+   ╚══════════════════════════════╝`,
+            type: "success"
+        },
+        hack: {
+            output: `[▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓] 100%
+  ✅ Hacking complete!
+  ...
+  Just kidding. But you've hacked your way into my portfolio, so that's something! 😄`,
+            type: "success"
+        },
+        coffee: {
+            output: `☕ Brewing a fresh cup of code...
+     ( (
+      ) )
+    .______.
+    |      |]
+    \      /
+     '----'
+  Status: Caffeinated and ready to ship.`,
+            type: "info"
+        },
+        "rm -rf": {
+            output: `🚨 CRITICAL WARNING 🚨
+  rm: cannot remove '/portfolio/*': Operation not permitted
+  (Nice try. This portfolio is immutable.)`,
+            type: "warning"
+        },
+        whoami: {
+            output: `You are: visitor@aditya-portfolio
+  Role: Curious Explorer
+  Access Level: Read-Only (with style)
+  Session: Active`,
+            type: "info"
         }
     };
 
@@ -1470,6 +1522,18 @@ Type 'work 1' through 'work 4' (e.g. 'work 1') to inspect a project.`,
         if (['about', 'bio'].includes(lookup)) lookup = 'about';
         if (['contact', 'email', 'social'].includes(lookup)) lookup = 'contact';
         if (['experiments', 'exploration', 'explorations'].includes(lookup)) lookup = 'experiments';
+        if (['sudo su', 'su', 'sudo rm'].includes(lookup)) lookup = 'sudo';
+        if (['rm -rf', 'rm -rf /', 'rm -rf /*'].includes(lookup)) lookup = 'rm -rf';
+        if (['whoami', 'who'].includes(lookup)) lookup = 'whoami';
+        if (lookup === 'neofetch' || lookup === 'fetch') lookup = 'neofetch';
+        if (lookup === 'hack' || lookup === 'hack this') lookup = 'hack';
+        if (lookup === 'coffee' || lookup === 'brew') lookup = 'coffee';
+
+        // Matrix rain easter egg
+        if (lookup === 'matrix') {
+            triggerMatrixRain();
+            return;
+        }
 
         const outputDiv = document.createElement('div');
         outputDiv.className = 'console-line';
@@ -1992,5 +2056,134 @@ Type 'work 1' through 'work 4' (e.g. 'work 1') to inspect a project.`,
             detailHeader.classList.remove('scrolled');
         }
     });
+
+    /* ==========================================================================
+       MATRIX RAIN EASTER EGG
+       ========================================================================== */
+    function triggerMatrixRain() {
+        // Output a message in the terminal first
+        if (consoleLogs && livePrompt) {
+            const msg = document.createElement('div');
+            msg.className = 'console-line';
+            msg.innerHTML = `<div class="console-output success">Initiating Matrix rain sequence... Wake up, Neo.</div>`;
+            consoleLogs.insertBefore(msg, livePrompt);
+        }
+
+        const matrixCanvas = document.createElement('canvas');
+        matrixCanvas.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:99990;pointer-events:none;';
+        document.body.appendChild(matrixCanvas);
+        const mCtx = matrixCanvas.getContext('2d');
+        matrixCanvas.width = window.innerWidth;
+        matrixCanvas.height = window.innerHeight;
+
+        const columns = Math.floor(matrixCanvas.width / 16);
+        const drops = new Array(columns).fill(1);
+        const chars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ABCDEF'.split('');
+
+        let frameCount = 0;
+        const maxFrames = 300; // ~5 seconds
+
+        function drawMatrix() {
+            if (frameCount >= maxFrames) {
+                matrixCanvas.style.transition = 'opacity 1s ease';
+                matrixCanvas.style.opacity = '0';
+                setTimeout(() => matrixCanvas.remove(), 1100);
+                return;
+            }
+
+            mCtx.fillStyle = 'rgba(0, 0, 0, 0.06)';
+            mCtx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
+            mCtx.fillStyle = '#00ff88';
+            mCtx.font = '14px Fira Code, monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                mCtx.fillText(text, i * 16, drops[i] * 16);
+                if (drops[i] * 16 > matrixCanvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+            frameCount++;
+            requestAnimationFrame(drawMatrix);
+        }
+        drawMatrix();
+    }
+
+    /* ==========================================================================
+       GSAP PAGE ENTRANCE ANIMATION
+       ========================================================================== */
+    if (typeof gsap !== 'undefined') {
+        const overlay = document.getElementById('page-transition-overlay');
+        
+        // Fade out the black overlay
+        gsap.to(overlay, {
+            opacity: 0,
+            duration: 0.8,
+            delay: 0.2,
+            ease: 'power2.out',
+            onComplete: () => {
+                overlay.style.display = 'none';
+            }
+        });
+
+        // Stagger animate hero elements
+        gsap.from('.hero-title', {
+            y: 40,
+            opacity: 0,
+            duration: 0.9,
+            delay: 0.4,
+            ease: 'power3.out'
+        });
+
+        gsap.from('.hero-subtitle', {
+            y: 30,
+            opacity: 0,
+            duration: 0.8,
+            delay: 0.6,
+            ease: 'power3.out'
+        });
+
+        gsap.from('.hero-actions > *', {
+            y: 25,
+            opacity: 0,
+            duration: 0.7,
+            delay: 0.75,
+            stagger: 0.12,
+            ease: 'power3.out'
+        });
+
+        gsap.from('.console-wrapper', {
+            x: 60,
+            opacity: 0,
+            duration: 1.0,
+            delay: 0.5,
+            ease: 'power3.out'
+        });
+
+        // Animate sections on scroll
+        gsap.utils.toArray('.reveal').forEach(section => {
+            gsap.from(section, {
+                y: 50,
+                opacity: 0,
+                duration: 0.8,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: section,
+                    start: 'top 85%'
+                }
+            });
+        });
+
+        // Animate nav links
+        gsap.from('.topbar-nav a', {
+            y: -15,
+            opacity: 0,
+            duration: 0.5,
+            delay: 0.3,
+            stagger: 0.08,
+            ease: 'power2.out'
+        });
+    }
 
 });
