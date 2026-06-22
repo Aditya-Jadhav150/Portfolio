@@ -828,12 +828,12 @@ document.addEventListener('DOMContentLoaded', () => {
         project_deepfake: `
             <div class="chat-inline-card">
                 <h4>🛡️ Aegis AI (Deepfake Detection)</h4>
-                <p>A secure production-grade deepfake detection platform featuring a Flask full-stack runtime, SQLite database persistence, and a Hugging Face Vision Transformer (ViT) inference engine. Incorporates a custom local training workflow utilizing an EfficientNet-B3 network with Mixup regularization.</p>
+                <p>An enterprise-grade forensic platform utilizing a decoupled web architecture. Features an XGBoost Fusion Engine analyzing 9 forensic metrics (Frequency Anomalies, Noise Residuals) and a Deep Multi-Modal Cross-Attention Network to isolate synthetic faces.</p>
                 <div class="tech-list">
                     <span class="tech-tag">Python</span>
                     <span class="tech-tag">PyTorch</span>
                     <span class="tech-tag">Flask</span>
-                    <span class="tech-tag">SQLite</span>
+                    <span class="tech-tag">XGBoost</span>
                     <span class="tech-tag">Hugging Face</span>
                 </div>
                 <div class="chat-card-footer">
@@ -1390,10 +1390,10 @@ Type 'work 1' through 'work 4' (e.g. 'work 1') to inspect a project.`,
         },
         "work 1": {
             output: `[01 / Aegis AI]
-• Category: Deep Learning / Synthetic Media Detection
-• Tech: Python, PyTorch, Flask, SQLite, Hugging Face
-• Description: Full-stack deepfake classification app pairing a HF Vision Transformer (ViT) model, custom face-extraction alignments, and Google OAuth user frameworks.
-• Impact: Achieved precision detections on GAN/Diffusion synthetic faces.`,
+• Category: Forensic Platform / Deepfake Detection
+• Tech: Python, PyTorch, Flask, XGBoost, Hugging Face
+• Description: Enterprise deepfake detection system running an XGBoost fusion engine on 9 extracted forensic metrics and a deep multi-modal cross-attention network.
+• Impact: High-precision real-time isolation of GAN/Diffusion synthetic media via biometric anomalies.`,
             type: "success"
         },
         "work 2": {
@@ -1705,27 +1705,27 @@ Type 'work 1' through 'work 4' (e.g. 'work 1') to inspect a project.`,
         aegis: {
             num: "01 /",
             title: "Aegis AI",
-            category: "Deep Learning / Synthetic Media Detection",
+            category: "Forensic Platform / Deepfake Detection",
             role: "Lead Developer",
             timeline: "2026 (Ongoing)",
-            focus: "Transformer Inference",
+            focus: "Multi-Modal Forensic Fusion",
             gradientClass: "aegis-gradient",
             narrative: `
                 <div class="detail-block">
                     <h4>The Problem</h4>
-                    <p>The exponential growth of sophisticated generative AI and diffusion pipelines (like Midjourney and Latent Diffusion) has made synthetic media virtually indistinguishable from authentic photos, presenting severe security, identity, and misinformation risks.</p>
+                    <p>The exponential growth of sophisticated generative AI and diffusion pipelines has made synthetic media virtually indistinguishable from authentic photos, presenting severe security, identity, and misinformation risks.</p>
                 </div>
                 <div class="detail-block">
                     <h4>The Solution</h4>
-                    <p>A secure production-grade deepfake detection platform featuring a Flask full-stack runtime, SQLite database persistence, and a Hugging Face Vision Transformer (ViT) inference engine. Incorporates a custom local training workflow utilizing an EfficientNet-B3 network with Mixup regularization.</p>
+                    <p>An enterprise-grade deepfake detection system structured in a decoupled web service architecture. The platform combines advanced computer vision models (convolutional models, auto-encoders, and vision transformers) with classical digital image forensics to isolate fake face structures.</p>
                 </div>
                 <div class="detail-block">
                     <h4>Key Architecture Features</h4>
                     <ul>
-                        <li>Pre-trained Vision Transformer model orchestration using Hugging Face AutoImageProcessor and AutoModel pipelines.</li>
-                        <li>Local dataset preparation of 30,000 synthetic faces with custom Mixup regularization to smooth neural decision boundaries during training.</li>
-                        <li>Automated MTCNN face alignment that expands bounding coordinates by 15% to capture jawline and hairline seams where diffusion artifacts typically manifest.</li>
-                        <li>Advanced account security mechanisms including an in-memory IP jail rate-limiter, Google OAuth SSO integration, and 7-day username change restrictions.</li>
+                        <li>Production-Grade XGBoost Fusion Engine: Extracts 9 distinct forensic metrics including Frequency Anomaly, Noise Residuals via Tiny Auto-Encoders, and Edge Density.</li>
+                        <li>Deep Multi-Modal Cross-Attention Network: A high-capacity V2 architecture fusing Spatial (Swin-T), Frequency (ResNet-18), Latent, and Statistical branches.</li>
+                        <li>Automated MTCNN face alignment and cropping pipelines feeding parallel forensic extraction modules.</li>
+                        <li>Secure Flask Web UI backed by SQLAlchemy and Google Identity SSO, specifically configured for Hugging Face Spaces proxy compliance.</li>
                     </ul>
                 </div>
                 <div class="detail-block">
@@ -1734,15 +1734,15 @@ Type 'work 1' through 'work 4' (e.g. 'work 1') to inspect a project.`,
                         <span class="detail-tech-tag">Python</span>
                         <span class="detail-tech-tag">PyTorch</span>
                         <span class="detail-tech-tag">Flask</span>
-                        <span class="detail-tech-tag">SQLite</span>
+                        <span class="detail-tech-tag">XGBoost</span>
                         <span class="detail-tech-tag">Hugging Face</span>
                     </div>
                 </div>
                 <div class="detail-block">
                     <h4>Outcome & Metrics</h4>
-                    <p>Delivered highly precise classification on GAN/Diffusion fakes, resolving phone EXIF image rotation issues automatically and securing authentication endpoints against credential stuffing.</p>
+                    <p>Delivered highly precise classification on GAN/Diffusion fakes using multi-branch analysis, successfully deployed and rate-limited via production Hugging Face Spaces.</p>
                     <div class="detail-outcome-box">
-                        <p style="font-weight: 700; color: #ffffff; font-size: 1.1rem; margin-top: 10px;">98.4% Classification Accuracy on Latent Diffusion sets</p>
+                        <p style="font-weight: 700; color: #ffffff; font-size: 1.1rem; margin-top: 10px;">Production Deployed XGBoost Fusion Engine</p>
                     </div>
                 </div>
             `
