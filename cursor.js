@@ -372,8 +372,8 @@
             sat.y += sat.vy;
 
             // Draw connection from cursor core to satellite
-            const connAlpha = (isButtonState ? 0.12 : 0.25) * (1 - stateLerp * 0.4);
-            if (!isButtonState || stateLerp < 0.7) {
+            const connAlpha = isButtonState ? 0 : 0.25 * (1 - stateLerp * 0.4);
+            if (!isButtonState) {
                 drawConnection(cursor.x, cursor.y, sat.x, sat.y, connAlpha);
             }
 
@@ -382,7 +382,7 @@
             drawConnection(sat.x, sat.y, nextSat.x, nextSat.y, connAlpha * 0.6);
 
             // Draw satellite node
-            const satAlpha = sat.alpha * (isButtonState ? 0.3 * (1 - stateLerp) : 1.0);
+            const satAlpha = sat.alpha * (isButtonState ? 0 : 1.0);
             if (satAlpha > 0.02) {
                 drawGlowNode(sat.x, sat.y, sat.size, satAlpha, '34, 211, 238', sat.size * 3.5);
             }
@@ -394,7 +394,7 @@
 
             const px = cursor.x + (sat.x - cursor.x) * sat.packetProgress;
             const py = cursor.y + (sat.y - cursor.y) * sat.packetProgress;
-            const packetAlpha = (0.5 + Math.sin(sat.packetProgress * Math.PI) * 0.5) * (isButtonState ? 0.1 : 0.9);
+            const packetAlpha = (0.5 + Math.sin(sat.packetProgress * Math.PI) * 0.5) * (isButtonState ? 0 : 0.9);
             if (packetAlpha > 0.05) {
                 drawGlowNode(px, py, 1.5, packetAlpha, '255, 255, 255', 4);
             }
@@ -434,61 +434,20 @@
         /* ==================================================
            CORE NODE DRAW
         ================================================== */
-        const coreAlpha = isButtonState ? 0.2 + stateLerp * 0.3 : 1.0;
+        // Fade out core completely on buttons so native pointer is clear
+        const coreAlpha = isButtonState ? 0 : 1.0;
         const corePulse = 1.0 + Math.sin(time * 5.5) * 0.15;
         const coreSize = (isCardState ? 6 : isTerminalState ? 5 : 5) * corePulse * expansionScale;
 
-        if (!isButtonState || stateLerp < 0.7) {
+        if (!isButtonState && coreAlpha > 0) {
             drawGlowNode(cursor.x, cursor.y, coreSize, coreAlpha, '34, 211, 238', coreSize * 4);
         }
 
         /* ==================================================
-           BUTTON MORPH LABEL
+           BUTTON MORPH LABEL (REMOVED FOR CLEAN POINTER)
         ================================================== */
-        if ((isButtonState || stateLerp > 0.1) && stateLabel) {
-            const labelAlpha = stateLerp;
-            const pill = { w: 0, h: 28, radius: 14 };
-
-            ctx.save();
-            ctx.font = `bold 11px 'Fira Code', monospace`;
-            const tw = ctx.measureText(stateLabel).width;
-            pill.w = tw + 32;
-            pill.x = cursor.x - pill.w / 2;
-            pill.y = cursor.y - pill.h / 2;
-
-            // Pill background
-            ctx.strokeStyle = `rgba(34, 211, 238, ${labelAlpha * 0.8})`;
-            ctx.fillStyle = `rgba(0, 0, 0, ${labelAlpha * 0.75})`;
-            ctx.lineWidth = 1.2;
-            ctx.beginPath();
-            ctx.roundRect(pill.x, pill.y, pill.w, pill.h, pill.radius);
-            ctx.fill();
-            ctx.stroke();
-
-            // Label text
-            ctx.fillStyle = `rgba(34, 211, 238, ${labelAlpha})`;
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillText(stateLabel, cursor.x, cursor.y);
-
-            // Neural connections tighten around label corners
-            const corners = [
-                [pill.x + pill.radius, pill.y],
-                [pill.x + pill.w - pill.radius, pill.y],
-                [pill.x + pill.w - pill.radius, pill.y + pill.h],
-                [pill.x + pill.radius, pill.y + pill.h]
-            ];
-            corners.forEach(([cx, cy]) => {
-                ctx.strokeStyle = `rgba(34, 211, 238, ${labelAlpha * 0.3})`;
-                ctx.lineWidth = 0.6;
-                ctx.beginPath();
-                ctx.moveTo(cursor.x, cursor.y);
-                ctx.lineTo(cx, cy);
-                ctx.stroke();
-            });
-
-            ctx.restore();
-        }
+        // We no longer draw the [ VIEW ] or [ CHAT ] pill labels because
+        // we are yielding to the clean, native system pointer on hover.
 
         /* ==================================================
            TERMINAL MORPH LABEL

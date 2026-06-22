@@ -2237,9 +2237,12 @@ footer {
    NEURAL CURSOR SYSTEM
    ========================================================= */
 
-/* Hide default cursor globally */
+/* Hide default cursor globally on non-interactive elements */
+html, body {
+    cursor: none;
+}
 *, *::before, *::after {
-    cursor: none !important;
+    /* removed forced !important so we can use native pointers */
 }
 
 /* Neural cursor canvas — top of everything */
