@@ -2347,20 +2347,6 @@ footer {
 }
 
 /* =========================================================
-   PAGE TRANSITION OVERLAY
-   ========================================================= */
-#page-transition-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: #000000;
-    z-index: 99998;
-    pointer-events: none;
-}
-
-/* =========================================================
    MOBILE RESPONSIVE: Disable Heavy Animations
    ========================================================= */
 @media (max-width: 768px) {

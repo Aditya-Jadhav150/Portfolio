@@ -2114,18 +2114,9 @@ Type 'work 1' through 'work 4' (e.g. 'work 1') to inspect a project.`,
        GSAP PAGE ENTRANCE ANIMATION
        ========================================================================== */
     if (typeof gsap !== 'undefined') {
-        const overlay = document.getElementById('page-transition-overlay');
-        
-        // Fade out the black overlay
-        gsap.to(overlay, {
-            opacity: 0,
-            duration: 0.8,
-            delay: 0.2,
-            ease: 'power2.out',
-            onComplete: () => {
-                overlay.style.display = 'none';
-            }
-        });
+        if (typeof ScrollTrigger !== 'undefined') {
+            gsap.registerPlugin(ScrollTrigger);
+        }
 
         // Stagger animate hero elements
         gsap.from('.hero-title', {
