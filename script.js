@@ -844,13 +844,13 @@ document.addEventListener('DOMContentLoaded', () => {
         `,
         project_exonyx: `
             <div class="chat-inline-card">
-                <h4>🚀 EXONYX (Full-Stack AI App)</h4>
-                <p>A high-performance modern web application integrating advanced AI workflows to streamline digital processes. Deployed seamlessly on Vercel with a responsive Next.js frontend architecture.</p>
+                <h4>🚀 EXONYX (Exoplanet Discovery Platform)</h4>
+                <p>An AI-powered autonomous platform to streamline exoplanet discovery using NASA MAST archive data. It processes photometric light curves, detects transit signals using TLS, and validates candidates using a convolutional neural network (AstroNet).</p>
                 <div class="tech-list">
                     <span class="tech-tag">Next.js</span>
-                    <span class="tech-tag">React</span>
-                    <span class="tech-tag">AI/ML</span>
-                    <span class="tech-tag">Vercel</span>
+                    <span class="tech-tag">FastAPI</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Three.js</span>
                 </div>
                 <div class="chat-card-footer">
                     <a href="https://github.com/Aditya-Jadhav150/EXONYX.git" target="_blank" class="chat-card-link"><i class="fa-brands fa-github"></i> Repository</a>
@@ -1415,10 +1415,10 @@ Type 'work 1' through 'work 4' (e.g. 'work 1') to inspect a project.`,
         },
         "work 4": {
             output: `[04 / EXONYX]
-• Category: Full-Stack AI Application
-• Tech: Next.js, React, AI/ML, Vercel
-• Description: A high-performance modern web application integrating advanced AI workflows to streamline digital processes.
-• Impact: Deployed seamlessly on Vercel with a responsive Next.js frontend architecture.`,
+• Category: Astronomy / AI Data Pipeline
+• Tech: Next.js, FastAPI, Python, Three.js
+• Description: Autonomous platform processing NASA MAST light curves to detect exoplanet transits using TLS and AstroNet CNNs.
+• Impact: High-throughput batch processing of up to 100 targets with real-time 3D simulation telemetry.`,
             type: "success"
         },
         experiments: {
@@ -1841,39 +1841,42 @@ Type 'work 1' through 'work 4' (e.g. 'work 1') to inspect a project.`,
         exonyx: {
             num: "04 /",
             title: "EXONYX",
-            category: "Full-Stack AI Application",
+            category: "Astronomy / AI Data Pipeline",
             role: "Lead Developer",
             timeline: "2026",
-            focus: "Web Integration",
+            focus: "AstroNet CNN Pipeline",
             gradientClass: "exonyx-gradient",
             narrative: `
                 <div class="detail-block">
-                    <h4>The Project</h4>
-                    <p>A high-performance modern web application integrating advanced AI workflows to streamline digital processes. Developed to provide robust functionality combined with seamless user interactions.</p>
+                    <h4>The Problem</h4>
+                    <p>Manually processing raw photometric data from Kepler and TESS missions to find periodic transit signals is labor-intensive, while separating true exoplanets from eclipsing binaries requires complex physics modeling.</p>
+                </div>
+                <div class="detail-block">
+                    <h4>The Solution</h4>
+                    <p>An autonomous end-to-end exoplanet discovery platform. It ingests NASA MAST data, removes stellar noise using WOTAN detrending, flags periodic dips via Transit Least Squares (TLS), and uses deep learning (AstroNet CNN) to validate the probability of a true planetary candidate.</p>
                 </div>
                 <div class="detail-block">
                     <h4>Key Architecture Features</h4>
                     <ul>
-                        <li>Seamless full-stack integration deployed on Vercel for edge network performance.</li>
-                        <li>Dynamic, responsive frontend architecture built using Next.js and React.</li>
-                        <li>Integration of AI/ML services for enhanced data processing.</li>
-                        <li>Optimized for speed, accessibility, and modern web standards.</li>
+                        <li>Autonomous Python pipeline handling Detrending, Phase Folding, and MCMC Characterization for planetary parameters.</li>
+                        <li>High-throughput survey campaign capable of batch processing 100 targets simultaneously via asynchronous workers.</li>
+                        <li>Real-time 3D physics simulator built with Three.js mapping procedural starfields and generating live SVG light curves synced with the planetary transit.</li>
                     </ul>
                 </div>
                 <div class="detail-block">
                     <h4>Technologies Employed</h4>
                     <div class="detail-tech-list">
                         <span class="detail-tech-tag">Next.js</span>
-                        <span class="detail-tech-tag">React</span>
-                        <span class="detail-tech-tag">AI/ML</span>
-                        <span class="detail-tech-tag">Vercel</span>
+                        <span class="detail-tech-tag">FastAPI</span>
+                        <span class="detail-tech-tag">Python</span>
+                        <span class="detail-tech-tag">Three.js</span>
                     </div>
                 </div>
                 <div class="detail-block">
                     <h4>Outcome & Metrics</h4>
-                    <p>Successfully shipped a stable production build to Vercel, ensuring high uptime, rapid edge delivery, and scalable infrastructure.</p>
+                    <p>Successfully automated the pipeline for ingesting raw NASA MAST archives, mapping light curves, and delivering high-confidence AstroNet classification in a single unified web platform.</p>
                     <div class="detail-outcome-box">
-                        <p style="font-weight: 700; color: #ffffff; font-size: 1.1rem; margin-top: 10px;">Successfully Deployed & Scaled on Vercel Edge</p>
+                        <p style="font-weight: 700; color: #ffffff; font-size: 1.1rem; margin-top: 10px;">Automated Signal Extraction & AstroNet Validation</p>
                     </div>
                 </div>
             `
